@@ -40,7 +40,7 @@ jobs:
     
     - name: Deploy to GitHub Pages
       run: |
-        cd __sapper__/export
+        cd __sapper__/export/karaom
         git init
         git config --global user.email "${EMAIL}"
         git config --global user.name "Olyno"
