@@ -1,0 +1,54 @@
+name: Build and deploy website
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      run: |
+        git submodule init
+        git submodule update
+
+    - name: Setup NodeJS environement
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - uses: actions/cache@v1
+      id: cache-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-yarn
+        restore-keys: |
+          ${{ runner.os }}-yarn
+          
+    - name: Install dependencies
+      if: steps.cache-modules.outputs.cache-hit != 'true'
+      run: yarn install
+
+    - name: Build Website
+      run: yarn export
+    
+    - name: Deploy to GitHub Pages
+      run: |
+        cd __sapper__/export
+        git init
+        git config --global user.email "${EMAIL}"
+        git config --global user.name "Olyno"
+        git remote add origin https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        git checkout -b gh-pages
+        git add .
+        git commit -m "Build website"
+        git push origin gh-pages -f
+      env:
+        EMAIL: ${{ secrets.EMAIL }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
