@@ -54,16 +54,20 @@
     <title>Playing {song.title} by {song.artist} - Karaom</title>
 </svelte:head>
 
-<div class="section">
-    <button class="button is-info" on:click={() => song = undefined}>Back</button>
-    <div class="has-text-centered">
-        <h1 class="title">{song.title} by {song.artist}</h1>
-        <div class="section">
-            <div id="player"></div>
+<div class="section has-text-centered">
+    <div class="columns">
+        <div class="column is-1">
+            <button class="button is-info" on:click={() => song = undefined}>Back</button>
         </div>
-        <div class="section">
-            <h2 class="title">{currentLyric}</h2>
+        <div class="column">
+            <h1 class="title">{song.title} by {song.artist}</h1>
+            <div class="section">
+                <div id="player"></div>
+            </div>
+            <div class="section">
+                <h2 class="title">{currentLyric}</h2>
+            </div>
+            <a href="https://github.com/Karaom/karaom-public/issues/new?title=%5BLyric%20issue%5D%20Music%20{song.title}%20by%20{song.artist}&body=**Explain%20the%20issue%20you%20have%20here:**%20" class="button is-small is-danger">Any issue with lyrics? Report it here</a>
         </div>
-        <a href="https://github.com/Karaom/karaom-public/issues/new?title=%5BLyric%20issue%5D%20Music%20{song.title}%20by%20{song.artist}&body=**Explain%20the%20issue%20you%20have%20here:**%20" class="button is-small is-danger">Any issue with lyrics? Report it here</a>
     </div>
 </div>
