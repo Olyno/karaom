@@ -16,7 +16,7 @@ jobs:
     - name: Checkout submodules
       run: |
         git submodule init
-        git submodule update
+        git submodule update --remote --recursive
 
     - name: Setup NodeJS environement
       uses: actions/setup-node@v1
