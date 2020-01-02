@@ -1,5 +1,9 @@
 <script>
 
+    import { isFullScreen } from '../stores/player';
+
+    import CloseFullScreenButton from './CloseFullScreenButton.svelte'
+
     let isActive = false;
 
 </script>
@@ -14,7 +18,12 @@
     </div>
     <div class="navbar-menu" class:is-active={isActive}>
         <div class="navbar-start">
-            
+            <a href="/karaom" class="navbar-item">Home</a>
+            {#if $isFullScreen}
+                <div class="navbar-item">
+                    <CloseFullScreenButton />
+                </div>
+            {/if}
         </div>
         <div class="navbar-end">
             <div class="navbar-item">

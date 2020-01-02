@@ -1,14 +1,13 @@
 <script>
 
-    import { createEventDispatcher } from 'svelte';
-
-    const dispatch = createEventDispatcher();
+    let clazz;
 
     export let song;
+    export { clazz as class };
 
 </script>
 
-<div class="card">
+<div class="card {clazz}">
     <div class="card-image">
         <figure class="image is-4by3">
             <img src="https://img.youtube.com/vi/{song.youtubeId}/hqdefault.jpg" alt="Hit image">
@@ -22,7 +21,7 @@
             </div>
         </div>
         <div class="content has-text-centered">
-            <button class="button is-info" on:click={() => dispatch('play', { song })}>Play it now!</button>
+            <a href="music/{song.title.toLowerCase().replace(/\s(\w+)/g, '-$1')}" class="button is-info">Play it now!</a>
         </div>
     </div>
 </div>

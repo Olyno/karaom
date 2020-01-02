@@ -4,9 +4,9 @@
     import YouTubePlayer from 'youtube-player';
 
     export let song;
+    export let currentLyric;
 
     let player;
-    let currentLyric = '...';
     let currentTimeFunction,
         currentMilliseconds = 0,
         milliseconds = 0,
@@ -20,12 +20,15 @@
     }
 
     onMount(async () => {
-        await injectBefore(1, 'Go!');
-        await injectBefore(2, 'Ready?');
+        injectBefore(1, 'Go!');
+        injectBefore(2, 'Ready?');
         player = await YouTubePlayer('player', {
             width: '600',
             height: '400',
-            videoId: song.youtubeId
+            videoId: song.youtubeId,
+            playerVars: {
+                iv_load_policy: 3
+            }
         });
         player.playVideo()
             .then(video => {
@@ -50,24 +53,4 @@
 
 </script>
 
-<svelte:head>
-    <title>Playing {song.title} by {song.artist} - Karaom</title>
-</svelte:head>
-
-<div class="section has-text-centered">
-    <div class="columns">
-        <div class="column is-1">
-            <button class="button is-info" on:click={() => song = undefined}>Back</button>
-        </div>
-        <div class="column">
-            <h1 class="title">{song.title} by {song.artist}</h1>
-            <div class="section">
-                <div id="player"></div>
-            </div>
-            <div class="section">
-                <h2 class="title">{currentLyric}</h2>
-            </div>
-            <a href="https://github.com/Karaom/karaom-public/issues/new?title=%5BLyric%20issue%5D%20Music%20{song.title}%20by%20{song.artist}&body=**Explain%20the%20issue%20you%20have%20here:**%20" class="button is-small is-danger">Any issue with lyrics? Report it here</a>
-        </div>
-    </div>
-</div>
+<div id="player"></div>
