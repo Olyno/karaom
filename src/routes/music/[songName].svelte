@@ -11,6 +11,7 @@
 
 <script>
 
+    import { onMount } from 'svelte';
     import { isFullScreen } from '../../stores/player';
 
     import SongPlayer from '../../components/SongPlayer.svelte';
@@ -20,6 +21,16 @@
     export let song;
 
     let currentLyric = '...';
+
+    async function onFullScreenChange() {
+        $isFullScreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+    }
+
+    onMount(async () => {
+        document.addEventListener('fullscreenchange', onFullScreenChange, false);
+        document.addEventListener('webkitfullscreenchange', onFullScreenChange, false);
+        document.addEventListener('mozfullscreenchange', onFullScreenChange, false);
+    })
 
 </script>
 

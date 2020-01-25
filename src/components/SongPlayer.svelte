@@ -8,7 +8,7 @@
     let player,
         playerLoaded = false,
         playerId = song.youtubeId;
-        
+
     let currentTimeFunction,
         currentMilliseconds = 0,
         milliseconds = 0,
@@ -53,10 +53,10 @@
     })
 
     afterUpdate(async () => {
-        if (currentTimeFunction) clearInterval(currentTimeFunction);
         injectBefore(1, 'Go!');
         injectBefore(2, 'Ready?');
         if (playerLoaded && playerId !== song.youtubeId) {
+            clearInterval(currentTimeFunction)
             player.destroy();
             player = new YT.Player('player', playerConfig);
             playerId = song.youtubeId;
