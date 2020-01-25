@@ -37,6 +37,7 @@
 <style>
     .isHidden { display: none; }
     .fullScreenTitle { color: black; font-size: 75px; }
+    .small-section { padding: 1.5rem 1rem }
 </style>
 
 <svelte:head>
@@ -65,6 +66,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="small-section" class:isHidden={$isFullScreen}>
+                <SongSearcher show={1} />
+            </div>
+
         </div>
 
         <div class="column {$isFullScreen ? '' : 'is-7'}">
@@ -82,11 +88,7 @@
 
         </div>
 
-        <div class="column" class:isHidden={$isFullScreen}>
-            <div class="has-text-centered">
-                <SongSearcher show={1} />
-            </div>
-        </div>
+        <div class="column" class:isHidden={$isFullScreen}></div>
 
     </div>
 </div>
