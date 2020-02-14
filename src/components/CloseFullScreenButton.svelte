@@ -1,7 +1,5 @@
 <script>
 
-    import { isFullScreen } from '../stores/player';
-
     async function closeFullscreen() {
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -12,7 +10,6 @@
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
-        $isFullScreen = false;
     }
 
 </script>

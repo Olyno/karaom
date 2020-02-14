@@ -1,6 +1,7 @@
 <script>
 
     import { onMount, onDestroy, afterUpdate } from 'svelte';
+    import { isFullScreen } from '../stores/player';
 
     export let song;
     export let currentLyric;
@@ -24,6 +25,9 @@
         },
         events: {
             onReady: () => {
+                injectBefore(1, 'Go!');
+                injectBefore(2, 'Ready?');
+                player.setVolume(75);
                 player.playVideo();
                 currentTimeFunction = setInterval(() => {
                     currentMilliseconds = player.getCurrentTime();
@@ -53,8 +57,6 @@
     })
 
     afterUpdate(async () => {
-        injectBefore(1, 'Go!');
-        injectBefore(2, 'Ready?');
         if (playerLoaded && playerId !== song.youtubeId) {
             clearInterval(currentTimeFunction)
             player.destroy();
@@ -69,4 +71,6 @@
 
 </script>
 
-<div id="player"></div>
+<div class:isHidden={$isFullScreen}>
+    <div id="player"></div>
+</div>

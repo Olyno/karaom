@@ -1,7 +1,5 @@
 <script>
 
-    import { isFullScreen } from '../stores/player';
-
     async function openFullscreen() {
         const elem = document.documentElement;
         if (elem.requestFullscreen) {
@@ -13,7 +11,6 @@
         } else if (elem.msRequestFullscreen) { /* IE/Edge */
             elem.msRequestFullscreen();
         }
-        $isFullScreen = true;
     }
 
 </script>

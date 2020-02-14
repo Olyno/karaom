@@ -23,7 +23,7 @@
     let currentLyric = '...';
 
     async function onFullScreenChange() {
-        $isFullScreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+        $isFullScreen = (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) !== null;
     }
 
     onMount(async () => {
@@ -35,9 +35,7 @@
 </script>
 
 <style>
-    .isHidden { display: none; }
     .fullScreenTitle { color: black; font-size: 75px; }
-    .small-section { padding: 1.5rem 1rem }
 </style>
 
 <svelte:head>
