@@ -28,7 +28,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a href="https://github.com/Karaom/karaom-public/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc" target="_blank" class="button is-primary">A problem?</a>
+                    <a href="https://github.com/Karaom/karaom-public/issues/new?title=I%20have%20a%20problem%20with%20Karaom&body=**Explain%20what%20is%20wrong:**%20" target="_blank" class="button is-primary">A problem?</a>
                     <a href="https://github.com/Karaom/karaom" target="_blank" class="button is-dark"><i class="fab fa-github"></i></a>
                 </div>
             </div>
