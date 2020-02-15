@@ -29,7 +29,7 @@ async function convertLyrics() {
                         if (parts[0] === 've') parts[0] = 'version';
                         if (parts[0] === 'yt') {
                             parts[0] = 'youtubeId';
-                            parts[1] = parts[2].split('watch?v=')[1];
+                            parts[1] = parts[2].split('watch?v=')[1].replace(/\s/g, '');
                         }
                         back[parts[0]] = parts[1];
                     }

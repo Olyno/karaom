@@ -1,7 +1,9 @@
 <script>
 
     import { onMount, onDestroy, afterUpdate } from 'svelte';
-    import { isFullScreen } from '../stores/player';
+    import { goto } from '@sapper/app';
+    import lyrics from '../lyrics/lyrics';
+    import { isFullScreen, songsQueue } from '../stores/player';
 
     export let song;
     export let currentLyric;
@@ -42,6 +44,13 @@
                     }
                 }, 10);
                 playerLoaded = true;
+            },
+            onStateChange: (state) => {
+                if (state.data === 0) {
+                    const newSong = lyrics.filter(s => s.youtubeId === $songsQueue[0])[0];
+                    $songsQueue = $songsQueue.filter(s => s !== newSong.youtubeId);
+                    goto(`music/${newSong.title.toLowerCase().replace(/\s(\w+)/g, '-$1')}`);
+                }
             }
         }
     }
